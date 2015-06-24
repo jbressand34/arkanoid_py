@@ -1,0 +1,13 @@
+\section{Tests unitaires}
+  On introduira ici seulement les tests unitaires nécissant une présentation de leur fonctionnement. On notera aussi que seule la version objet, plus aboutie, en est dotée. On conseillera de les lancer à partir d'un terminal, diverses informations étant censées y être affichés.
+
+  \subsection{Collision}
+    Le test unitaire du fichier {\em \bf collision.py} permet de tester les différents types de collisions. Les contrôles sont les suivants :
+    \begin{itemize}
+    \item clic gauche et mouvement pour déplacer la balle (lui donner une vitesse et direction)
+    \item flèches directionnelles pour déplacer la barre
+	\end{itemize}
+	On trouve en sortie dans le terminal les éléments en collision, le type de collision détecté (vertical, horizontal) et les éventuels {\em flags} non traités à l'intérieur de la fonction de collision. Ils peuvent par exemple correspondre à la création d'un bonus ou d'une animation.
+
+  \subsection{Génération procédurale}
+	Le fichier {\em \bf procgen.py} s'éxécute avec un argument correspondant à la graine. À défaut, la graine est définie à 1337. Les petits rectangles verts correspondent à la présence d'un bonus dans une brique, les rouges à des malus. La version fournie étant réglée par défaut à une difficulté de 0\%, aucun malus n'est censé apparaître.

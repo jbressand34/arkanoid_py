@@ -1,0 +1,64 @@
+  \title{Cahier des charges}
+  \author{MASSAVIOL Mathieu, BRESSAND Jérémy, BARRY Amadou Bailo, JULIEN Marin}
+  \section{Cahier des charges}
+  \subsection{Fonctionnalités attendues}
+  
+  
+  Le jeu dispose d'un écran d'accueil et de fin et est doté d'un système de score persistant.
+  
+  Les éléments de jeu sont les briques, la barre, les murs, les balles et les bonus.
+  Une balle rebondit sur les murs, la barre et les briques. On peut disposer de plusieurs balles.
+  Lors de la collision balle/barre, la balle est dirigée du côté touché de la barre.
+  La barre est contrôlée par le joueur via souris ou clavier.
+  % (Lors du rebond de la balle sur la barre, l'angle entre la trajectoire de la balle et l'axe des abscisses est calculé proportionellement à la distance du point d'impact de la balle par rapport à l'extrémité droite de la raquette. Si la balle tape sur l'extrémité droite alors son angle sera minimal. Sinon si la balle tape sur l'extrémité gauche alors son angle sera maximal. Sinon son angle sera compris entre l'angle minimal et maximal en fonction de la distance entre le point d'impact et l'extrémité droite de la barre. )
+  Le jeu sera dôté des modes :
+  \begin{description}
+    \item[Campagne] sa suite de niveaux est écrite à l'avance;
+    \item[Arcade] sa suite de niveaux est générée procéduralement à partir d'une graine;
+    \item[Coop] deux joueurs jouent avec deux barres en coopération.
+  \end{description}
+  Lorsque le joueur ne rattrape pas la dernière balle avec la barre, il perd une vie. Lorsqu'il a perdu toutes ses vies, la partie est finie.
+  Alors, si le score du joueur entre dans le top10, il y est inscrit. Le top10 est alors réorganisé.
+
+  \subsubsection{Brique}
+  Les briques peuvent encaisser un nombre déterminé de coups qui leur est propre. Passé ce nombre, elles sont détruites.
+  Elles peuvent avoir un type special, leur attribuant un comportement propre.
+  On aura notamment les briques explosives : lors de leurs destructions, elles endommagent les briques environnantes.
+  Lorsque que toutes les briques destructibles sont détruites, le niveau est fini. On passe alors à un autre niveau.
+  Lorsqu'une brique est détruite, un nombre de points est ajouté au score du joueur. Un bonus peut alors aussi être lâché.
+
+  \subsubsection{Bonus}
+  Un bonus descend progressivement. S'ils entrent en collision avec la barre, ils deviennent effectifs.
+  Ils déclenchent les effets suivant :
+  \begin{itemize}
+    \item Ajout d'une balle;
+    \item Balle de feu;
+    \item Agrandissement temporaire de la barre;
+    \item Retrecissement temporaire de la barre.
+  \end{itemize}
+
+  \subsubsection{Balle}
+  Une balle peut temporairement avoir un type special, lui attribuant un comportement propre.
+  On aura notamment la balle de feu qui transperce les briques destructibles sur son passage.
+  Une balle va de plus en plus vite au cours d'une même vie.
+
+  \newpage
+  \subsection{Fonctionnalités supplémentaires}
+
+  \begin{enumerate}
+    \item Le joueur peut créer ses propres niveaux grâce à un éditeur de niveau. 
+    \item Le programme gère le plein écran.
+    \item Gestion de la redimension de la fenêtre.
+    \item La barre peut être controlée par une manette.
+    \item Si le joueur termine le niveau rapidement, un niveau bonus apparaît lui permettant un gain de points.
+    \item Le jeu est doté d'un mode Battle : Deux joueurs partagent une même série de niveaux. Chacun a son aire de jeu, et le premier qui finit la suite de niveau remporte le match.
+    \item Certaines briques peuvent tirer. Lorsque la barre est touchée, elle est temporairement immobilisée.
+On aura les bonus supplémentaires :
+    \begin{enumerate}
+      \item Barre gluante : La barre peut temporairement retenir une balle lors d'une collision;
+      \item Module laser : La barre peut temporairement tirer des lasers endommageant les briques;
+      \item Division des balles en trois petites de tailles inférieures et de vitesses supérieures.
+    \end{enumerate}
+    \item Le jeu gère des couples de portails, permettant la téléportation de balles.
+    \item Lors de collision barre/mur, les éléments de jeu tremblent à la façon d'un tilt de flipper, permettant à la balle de toucher des briques qu'elle ne toucherait pas sinon.
+  \end{enumerate}

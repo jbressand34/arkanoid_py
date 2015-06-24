@@ -1,0 +1,21 @@
+\section{Conclusion}
+  
+  \subsection{Autocritique }
+    Ce projet ayant été le premier de cette envergure pour nous, nous avons fait diverses erreurs même si nous restons globalement satisfait du produit final.
+
+    Tout d'abord, notre mauvaise gestion du temps et du planning a été à la source de différents problèmes.
+    Une de nos erreurs a été de commencer à coder avant d'avoir finaliser tous nos algorithmes. Cela a mener à la production de programme contenant de nombreux bugs -- on pense aux animations et plus encore aux collisions -- et à terme à un code peu intuitif une fois ces bugs résolus.
+    La version impérative a souffert d'un retard du même fait de la gestion du temps. Nous avions initialement prévu de les développer en même temps, mais étant donné l'évidente similarité des algorithmes nous avons préféré d'abord produire la version objet et l'adapter en impératif. Aussi des tensions internes ont géné à la production de celle-ci.
+
+    Même si globalement satisfaits de notre projet, force est de constater que des améliorations importantes peuvent être faites. Par exemple, les bonus sont présentement gérés type par type. Il faudrait disposer d'un système permettant d'assigner dynamiquement tel effet sur un élément de jeu à tel bonus; cela permettrait d'ajouter une grande quantité de bonus de manière simple. Une autre amélioration possible aurait été d'assigner de manière automatique un type d'animation à la destruction d'une brique. On aurait par ces deux améliorations largement réduit notre usage des flags lié à la collision, qui sont assez peu pratiques.
+
+    Enfin notre organisation a également souffert de divers problèmes. La répartition des tâches s'étant faite sur la base du volontariat, la charge de travail par membre a été déséquilibré. Une meilleure solution aurait été de se répartir les tâches équitablement.
+     Nous avons programmé de manière modulaire, chose qui facilite la compréhension et la réutilisation du code. Aussi nous avons eu des problèmes d'interfaçage, bien que mineurs. Cependant, nous nous sommes trop centrés sur nos tâches respectives. Nous aurions gagné en efficacité en travaillant parallèlement dans la même salle, du fait de la stimulation et de l'échange d'idée qui en serait sorti.
+    
+  \subsection{Perspective }
+    Notre programme connait différentes perspectives d'évolution, principalement grâce à la programmation modulaire et la présence des variables globales dans le fichier config.py.
+
+    Certains fichiers, du fait des ajouts successifs auxquels ils ont été sujet, ont des perspectives d'évolution limité en l'état. C'est notamment le cas pour le module de collision et de gestion des différents modes de jeux.
+
+		Malgré tout, on peut adapter la dimension du jeu par une simple modification des variables globales, comme l'on peut modifier la vitesse des balles, des bonus et barres, la durée des bonus, l'interval de point de vie des briques, ...
+    L'utilisation des modules pré-éxistants permettent l'ajout de nouvelles fonctionnalités. Par exemple, l'ajout de l'éditeur de niveau a été postérieur aux autres modules et n'a pas demandé d'adaptation.

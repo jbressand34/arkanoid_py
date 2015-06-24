@@ -1,0 +1,48 @@
+\section{Développement technique}
+  Nous avons développé notre code de manière modulaire dans l'idée de maximiser notre productivité, et de permettre une manipulation des fichiers et une gestion des bugs plus simple. L'ensemble des variables globales sont contenues dans le fichier {\bf \em config.py}. On notera l'absence de constante en python.
+    
+  \subsection{Animations}
+  Pour concevoir nos animations, l'idée retenue a été de décomposer une animation en deux parties : la classe Animation et la classe ElemAnim.
+	
+
+	Un objet Animation contient plusieurs instances d'ElemAnim et ne manipule pas de surfaces dans le canvas. Son rôle est de créer, déplacer et enlever des objets de type ElemAnim. Elle gère ainsi la structure d'une animation, non son apparence.
+
+    Un objet ElemAnim contient des surfaces. Son rôle est d'ajouter, de déplacer, d'enlever et de modifier les propriétés des surfaces du Canvas. ElemAnim gère ainsi l'apparence d'une animation.
+
+    Cette décomposition entre structure et apparence permet de simplifier le code et de le rendre plus lisible.
+
+    Lors de la conception des animations, de nombreuses classes filles de la classe Animation ont été créées ainsi que pour la classe ElemAnim. Il était alors possible de combiner telle classe héritant de Animation avec telle classe héritant de ElemAnim ce qui donnait de la généricité dans notre code.
+    Peu satisfaits de l'apparence de ces animations, nous n'avons gardé que peu de ces classes pour le programme final.
+	
+  \subsection{Collision}
+	
+  Notre algorithme de collision teste deux entités (balle, brique, ...) et renvoie une liste de dictionnaires que l'on appelle {\em \bf flag}, qui correspond aux modifications à faire ne pouvant être faites en interne du fait de la limite de la portée des variables. Un exemple est la création d'une animation de destruction de brique, le {\em flag} correspondant contient alors le nom et la position de l'événement.
+
+  La stratégie adoptée pour l'algorithme est la suivante :
+  \begin{itemize}
+    \item En fonction de leurs directions, on teste si les deux entités testées se chevauchent à la prochaine frame -- ie s'il va y avoir collision ;
+    \item Si oui, on détermine le type de collision : sur les bord verticaux ou horizontaux ;
+    \item On gère toutes les données de collision que la portée des variables nous permet de modifier (direction de la balle après rebond, points de vie des briques, destruction du bonus lors de son ramassage, ...) ;
+    \item On retourne les {\em flags} correspondant aux événements n'ayant pu être gérés en interne.
+  \end{itemize} 
+
+  \subsection{Génération procédurale}
+	La génération procédurale consiste en la génération de contenu de manière algorithmique, par opposition à la lecture de contenu pré-écrit. Nous utilisons ce concept dans nos modes Arcade et Coop pour générer les niveaux à partir d'une graine saisie par l'utilisateur. Une donnée supplémentaire vient compléter la génération : la difficulté. À chaque fois qu'un joueur avance de niveau, elle augmente, assignant aux malus et types de briques désavantageux des probabilités d'apparition supérieures.
+
+
+    Notre stratégie de génération de niveau est la suivante :
+	\begin{itemize}
+    \item Génération de bruit blanc plafonné entre 1 et 3, correspondant aux points de vie des briques ;
+    \item Suppression de briques, donnant à la disposition des briques une forme autre qu'un grand rectangle ;
+    \item La distribution des types spéciaux de briques, limités aux types explosif et indestructible dans la version rendue ;
+    \item La distribution des bonus et malus dans les briques ;
+    \item Nous retournons finalement notre liste de briques pour permettre son exploitation.
+	\end{itemize}
+    La fonction principale de notre génération procédurale est disponible en annexe.
+  \subsection{Éditeur de niveaux}
+  
+      Parmi les fonctionnalités supplémentaires de notre cahier des charges nous avons implémenté un éditeur de niveaux qui nous a permis d'écrire facilement les niveaux de notre mode campagne.
+
+    L'éditeur se lance à partir d'un fichier annexe contenant la classe {\bf \em EditeurLvl}. Cette classe comprend comme attributs des variables correspondant aux différents paramètres du constructeur d'une brique ainsi qu'une liste de briques ainsi qu'un compteur incrémenté à chaque ajout de brique. En effet nous avons paramétré plusieurs touches pour pouvoir changer les attributs correspondant à la brique. Une dernière touche (la touche {\em Entrée}) permet de rajouter à la liste de briques une brique avec comme paramètre l'état actuel des attributs de la classe. Lorsque le niveau est rempli (quand le compteur de briques correspond à la taille d'un niveau définie dans {\bf \em config.py}), on appelle la methode de sauvegarde du niveau. Elle crée un nouveau fichier binaire et dans lequel on écrit grâce à la fonction {\em dump} de la bibliothèque {\bf \em pickle} qui prend la liste de briques et la transforme en code binaire.
+
+    Nous  n'avons pas eu le temps de créer un mode de jeu pour jouer au niveaux édités. L'utilisateur peut quand même réécrire la campagne à son gout en  créant des niveaux ayant pour nom 0, 1, ... , 9 qui remplaceront les  fichiers actuels.
